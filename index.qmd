@@ -18,6 +18,8 @@ knitr:
 
  - It is the next generation of what Rmarkdown, bookdown, blogdown (and all of the "downs") started. 
  
+ - Code chunks can target R, python, SQl, bash, juila, and so on.
+ 
  - This is an open source technical publishing system that is independent of the target language (i.e., R, python, etc.).
 
 
@@ -169,24 +171,42 @@ app <- shinyApp(ui = ui, server = server)
 ```
 :::
 
-## shinylive
+## webR
 
-A project for deploying Shiny applications that will run completely in the browser (R and python)
-
-<br>
-
-R and Python are compiled to WebAssembly (aka wasm)
+R can be compiled to WebAssembly (aka wasm)
 
  - R and packages are made into a binary format that can be embedded in the website. 
  - JavaScript is the interface that the browser uses.
+ 
+See [George Stagg's video](https://youtu.be/Mpq9a6yMl_w?si=p_wjtRUXQXVInrFM) for more information.
 
-I'll talk about adding shiny to Quarto documents (a book, in my case)
+You can see which R packages can be used [at the repository site](https://repo.r-wasm.org/). In mid May there were 13,707 packages (about `r round(19531/nrow(available.packages()) * 100, 0)`% of CRAN). 
 
-([Quarto extension](https://github.com/quarto-ext/shinylive), [R package](https://github.com/posit-dev/r-shinylive))
+## webR
+
+```{webr-r}
+mean(mtcars$mpg)
+```
+
+## shinylive
+
+A project for deploying Shiny applications that will run completely in the browser (R and python) via webR
+
+ - Computations occur _locally_!
+
+shinylive does _almost_ all of the heavy lifting for you. 
+
+<br>
+
+I'll focus on adding shiny apps to Quarto documents (a book, in my case)
+
+
+
+
 
 # **shiny server**: runs your code and renders the results on your client. {background-color="#CA225E"}
 
-# **shinylive**: downloads R/py + packages to client and runs shiny there {background-color="#22ca8e"}
+# **shinylive**: downloads R & packages to client then runs R/shiny on the client {background-color="#22ca8e"}
 
 ## Setup
 
@@ -213,7 +233,11 @@ filters:
 
 <br> 
 
-Your shiny app goes in a single code chunk of type `shinylive-r` and use the `standalone` option: 
+Each shiny app goes in a single code chunk. 
+
+Instead of using `{r}` in the header,  it is `{shinylive-r}`.  
+
+Also use the `standalone` option: 
 
 <br> 
 
@@ -311,7 +335,7 @@ library(tidymodels)
 
 4. Return the shiny app in the code chunk. 
 
-## Why would Posit do this? 
+## Why would Posit support this? 
 
 . . .
 

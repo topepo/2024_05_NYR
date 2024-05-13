@@ -20,6 +20,10 @@ knitr:
     fig.path: "figures/"
 
 fig-format: svg
+
 filters:
   - shinylive
+  - webr
 
+webr: 
+  show-startup-message: false
