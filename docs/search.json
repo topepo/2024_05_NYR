@@ -77,11 +77,11 @@
     "text": "An Example Pattern\n```{shinylive-r}\n#| label: fig-potato\n#| standalone: true\n\nlibrary(tidymodels)\n1️⃣ # other library() calls \n\n2️⃣ load(\"https://raw.githubusercontent.com/{user}/{repo}/{branch}/{file}\")\n\n3️⃣ source(\"https://raw.githubusercontent.com/{user}/{repo}/{branch}/{file}\")\n\n4️⃣ app\n```\n\nPackage should be listed in the code chunk.\nLoad the data in the code chunk.\nsource() with a local file won’t work.\nReturn the shiny app in the code chunk."
   },
   {
-    "objectID": "index.html#do-we-need-shiny-servers-or-posit-connect-anymore",
-    "href": "index.html#do-we-need-shiny-servers-or-posit-connect-anymore",
+    "objectID": "index.html#why-would-posit-do-this",
+    "href": "index.html#why-would-posit-do-this",
     "title": "Shinylive is SO EASY",
-    "section": "Do we need shiny servers or Posit Connect anymore?",
-    "text": "Do we need shiny servers or Posit Connect anymore?\nFor many applications, most likely:\n\n\nClient computing power may not be great.\nMoving data to the client may be expensive.\nData/Code security is paramount to many.\nNiceties of authentication, parameterization, support, etc that Connect offers\n\n\n\nWhy does Posit support this?"
+    "section": "Why would Posit do this?",
+    "text": "Why would Posit do this?\n\nFor many applications, shinylive is not the answer:\n\n\n\nClient computing power may not be great.\nMoving data to the client may be expensive.\nData/Code security is paramount to many.\nNiceties of authentication, parameterization, support, etc that Connect offers."
   },
   {
     "objectID": "index.html#more-information",

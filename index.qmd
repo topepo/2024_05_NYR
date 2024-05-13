@@ -311,9 +311,11 @@ library(tidymodels)
 
 4. Return the shiny app in the code chunk. 
 
-## Do we need shiny servers or Posit Connect anymore? 
+## Why would Posit do this? 
 
-For many applications, most likely:
+. . .
+
+For many applications, shinylive is not the answer:
 
 . . .
 
@@ -323,11 +325,11 @@ For many applications, most likely:
 
  - Data/Code security is paramount to many.
 
- - Niceties of authentication, parameterization, support, etc that Connect offers
+ - Niceties of authentication, parameterization, support, etc that Connect offers.
 
 . . .
 
-Why does Posit support this? 
+
 
 ## More Information
 
