@@ -1,0 +1,25 @@
+project:
+  type: website
+  output-dir: docs
+
+format:
+  revealjs:
+    slide-number: true
+    footer: <https://topepo.github.io/2024_05_NYR>
+    include-before-body: header.html
+    include-after-body: footer-annotations.html
+    theme: [default, tidymodels.scss]
+    width: 1280
+    height: 720
+
+knitr:
+  opts_chunk:
+    echo: true
+    collapse: true
+    comment: "#>"
+    fig.path: "figures/"
+
+fig-format: svg
+filters:
+  - shinylive
+

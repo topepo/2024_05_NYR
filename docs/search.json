@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "index.html#quarto",
+    "href": "index.html#quarto",
+    "title": "Shinylive is SO EASY",
+    "section": "Quarto",
+    "text": "Quarto\n\nIt is the next generation of what Rmarkdown, bookdown, blogdown (and all of the “downs”) started.\nThis is an open source technical publishing system that is independent of the target language (i.e., R, python, etc.)."
+  },
+  {
+    "objectID": "index.html#shiny-and-servers",
+    "href": "index.html#shiny-and-servers",
+    "title": "Shinylive is SO EASY",
+    "section": "Shiny and Servers",
+    "text": "Shiny and Servers\nHistorically, to let {people who are not you} run a shiny app, you’d need:\n\nA shiny server of your own\nA hosted server (e.g. shinyapps.io, Posit Connect)\n\nThe server runs your code and renders the results on your computer/phone/tv etc.\nTo use a Shiny app in Quarto, you would need to embed a frame that would show the app (from the external shiny server)\n\nAn example app…"
+  },
+  {
+    "objectID": "index.html#understanding-umap",
+    "href": "index.html#understanding-umap",
+    "title": "Shinylive is SO EASY",
+    "section": "Understanding UMAP",
+    "text": "Understanding UMAP\n\n#| label: fig-umap\n#| viewerHeight: 550\n#| standalone: true\n\nlibrary(shiny)\nlibrary(ggplot2)\nlibrary(bslib)\nlibrary(viridis)\n\n# ------------------------------------------------------------------------------\n\nlight_bg &lt;- \"#fcfefe\" # from aml4td.scss\ngrid_theme &lt;- bs_theme(\n  bg = light_bg, fg = \"#595959\"\n)\n\n# ------------------------------------------------------------------------------\n\ntheme_light_bl&lt;- function(...) {\n\n  ret &lt;- ggplot2::theme_bw(...)\n\n  col_rect &lt;- ggplot2::element_rect(fill = light_bg, colour = light_bg)\n  ret$panel.background  &lt;- col_rect\n  ret$plot.background   &lt;- col_rect\n  ret$legend.background &lt;- col_rect\n  ret$legend.key        &lt;- col_rect\n\n  ret$legend.position &lt;- \"top\"\n\n  ret\n}\n\n# ------------------------------------------------------------------------------\n\nui &lt;- fluidPage(\n  theme = grid_theme,\n  fluidRow(\n\n    column(\n      width = 4,\n      sliderInput(\n        inputId = \"min_dist\",\n        label = \"Min Distance\",\n        min = 0.0,\n        max = 1.0,\n        value = 0.2,\n        width = \"100%\",\n        step = 0.2\n      )\n    ), # min distance\n    column(\n      width = 4,\n      sliderInput(\n        inputId = \"neighbors\",\n        label = \"Neighbors\",\n        min = 5,\n        max = 45,\n        value = 5,\n        width = \"100%\",\n        step = 10\n      )\n    ), # nearest neighbors\n\n    column(\n      width = 4,\n      sliderInput(\n        inputId = \"supervised\",\n        label = \"Amount of Supervision\",\n        min = 0.0,\n        max = 0.7,\n        value = 0,\n        width = \"100%\",\n        step = 0.1\n      )\n    ),\n    fluidRow(\n      column(\n        width = 4,\n        radioButtons(\n          inputId = \"initial\",\n          label = \"Initialization\",\n          choices = list(\"Laplacian Eigenmap\" = \"spectral\", \"PCA\" = \"pca\", \n                         \"Random\" = \"random\")\n        )\n      ),\n      column(\n        width = 6,\n        align = \"center\",\n        plotOutput('umap')\n      )\n    )\n  ) # top fluid row\n)\n\nserver &lt;- function(input, output) {\n  load(url(\"https://raw.githubusercontent.com/aml4td/website/main/RData/umap_results.RData\"))\n\n  output$umap &lt;-\n    renderPlot({\n      \n      dat &lt;-\n        umap_results[\n          umap_results$neighbors == input$neighbors &\n            umap_results$min_dist == input$min_dist &\n            umap_results$initial == input$initial &\n            # log10(umap_results$learn_rate) == input$learn_rate &\n            umap_results$supervised == input$supervised,\n        ]\n\n      p &lt;-\n        ggplot(dat, aes(UMAP1, UMAP2, col = barley)) +\n        geom_point(alpha = 1 / 3, cex = 3) +\n        scale_color_viridis(option = \"viridis\") +\n        theme_light_bl() +\n        coord_fixed() +\n        labs(x = \"UMAP Embedding #1\", y = \"UMAP Embedding #2\") +\n        guides(col = guide_colourbar(barheight = 0.5))\n\n      print(p)\n\n    })\n}\n\napp &lt;- shinyApp(ui = ui, server = server)"
+  },
+  {
+    "objectID": "index.html#shinylive",
+    "href": "index.html#shinylive",
+    "title": "Shinylive is SO EASY",
+    "section": "shinylive",
+    "text": "shinylive\nA project for deploying Shiny applications that will run completely in the browser (R and python)\n\nR and Python are compiled to WebAssembly (aka wasm)\n\nR and packages are made into a binary format that can be embedded in the website.\nJavaScript is the interface that the browser uses.\n\nI’ll talk about adding shiny to Quarto documents (a book, in my case)\n(Quarto extension, R package)"
+  },
+  {
+    "objectID": "index.html#setup",
+    "href": "index.html#setup",
+    "title": "Shinylive is SO EASY",
+    "section": "Setup",
+    "text": "Setup\nDownload the extension for your Quarto project\n\nquarto add quarto-ext/shinylive\n\n\n \nYou also have to add a Quarto/Pandoc filter reference in your _quarto.yml file:\nfilters:\n  - shinylive"
+  },
+  {
+    "objectID": "index.html#code-chunks",
+    "href": "index.html#code-chunks",
+    "title": "Shinylive is SO EASY",
+    "section": "Code Chunks",
+    "text": "Code Chunks\n\nYour shiny app goes in a single code chunk of type shinylive-r and use the standalone option:\n\n```{shinylive-r}\n#| label: fig-shiny-spline\n#| standalone: true\n\n# shiny app code here\n\n```"
+  },
+  {
+    "objectID": "index.html#package-declarations",
+    "href": "index.html#package-declarations",
+    "title": "Shinylive is SO EASY",
+    "section": "Package declarations",
+    "text": "Package declarations\nTo declare packages, use library() calls\n\nThe renv package is used to figure this out.\n\n\nCurrently\n\nShinylive grabs the latest built version of a package from https://repo.r-wasm.org at render-time\n\n\n\nUpcoming\n\nShinylive will bundle package files when the app is first built and tries to match package versions used at that time."
+  },
+  {
+    "objectID": "index.html#ingesting-data-and-code",
+    "href": "index.html#ingesting-data-and-code",
+    "title": "Shinylive is SO EASY",
+    "section": "Ingesting Data and Code",
+    "text": "Ingesting Data and Code\n  \nThe one rule is:"
+  },
+  {
+    "objectID": "index.html#data-access",
+    "href": "index.html#data-access",
+    "title": "Shinylive is SO EASY",
+    "section": "Data access",
+    "text": "Data access\nYou don’t get automatic access to your local objects in your workspace\n\nJS will allow specific types of requests.\n\nwebR already patches download.file() to use an XHR request\n\nIt’s a work in progress. (GH issue: Add local folder support)"
+  },
+  {
+    "objectID": "index.html#as-always-be-careful",
+    "href": "index.html#as-always-be-careful",
+    "title": "Shinylive is SO EASY",
+    "section": "As always, be careful…",
+    "text": "As always, be careful…\n\nFrom Gordon Shotwell:\n\nAll the source code goes to the client\nAll of the data goes to the client\nDon’t include credentials\nDon’t include sensitive data"
+  },
+  {
+    "objectID": "index.html#an-example-pattern",
+    "href": "index.html#an-example-pattern",
+    "title": "Shinylive is SO EASY",
+    "section": "An Example Pattern",
+    "text": "An Example Pattern\n```{shinylive-r}\n#| label: fig-potato\n#| standalone: true\n\nlibrary(tidymodels)\n1️⃣ # other library() calls \n\n2️⃣ load(\"https://raw.githubusercontent.com/{user}/{repo}/{branch}/{file}\")\n\n3️⃣ source(\"https://raw.githubusercontent.com/{user}/{repo}/{branch}/{file}\")\n\n4️⃣ app\n```\n\nPackage should be listed in the code chunk.\nLoad the data in the code chunk.\nsource() with a local file won’t work.\nReturn the shiny app in the code chunk."
+  },
+  {
+    "objectID": "index.html#do-we-need-shiny-servers-or-posit-connect-anymore",
+    "href": "index.html#do-we-need-shiny-servers-or-posit-connect-anymore",
+    "title": "Shinylive is SO EASY",
+    "section": "Do we need shiny servers or Posit Connect anymore?",
+    "text": "Do we need shiny servers or Posit Connect anymore?\nFor many applications, most likely:\n\n\nClient computing power may not be great.\nMoving data to the client may be expensive.\nData/Code security is paramount to many.\nNiceties of authentication, parameterization, support, etc that Connect offers\n\n\n\nWhy does Posit support this?"
+  },
+  {
+    "objectID": "index.html#more-information",
+    "href": "index.html#more-information",
+    "title": "Shinylive is SO EASY",
+    "section": "More Information",
+    "text": "More Information\nMust watch: Running R-Shiny without a Server - posit::conf(2023)\nExamples:\n\nAll R examples on GitHub\nAll Python examples on GitHub\n\nSpecific examples by George Stagg:\n\nReproducible data science with webR and Shinylive 2024\nShinylive example with duckplyr and parquet files"
+  },
+  {
+    "objectID": "index.html#thanks",
+    "href": "index.html#thanks",
+    "title": "Shinylive is SO EASY",
+    "section": "Thanks",
+    "text": "Thanks\nThanks for the invitation to speak again!\n\nThanks to George Stagg, Joe Cheng, Winston Chang, Gordon Shotwell, and everyone else who made webR and shinylive happen.\n\n\n\nhttps://topepo.github.io/2024_05_NYR"
+  }
+]
