@@ -88,7 +88,7 @@
     "href": "index.html#an-example-pattern",
     "title": "Shinylive is SO EASY",
     "section": "An Example Pattern",
-    "text": "An Example Pattern\n```{shinylive-r}\n#| label: fig-potato\n#| standalone: true\n\nlibrary(tidymodels)\n1️⃣ # other library() calls \n\n2️⃣ load(\"https://raw.githubusercontent.com/{user}/{repo}/{branch}/{file}\")\n\n3️⃣ source(\"https://raw.githubusercontent.com/{user}/{repo}/{branch}/{file}\")\n\n4️⃣ app\n```\n\nPackage should be listed in the code chunk.\nLoad the data in the code chunk.\nsource() with a local file won’t work.\nReturn the shiny app in the code chunk."
+    "text": "An Example Pattern\n```{shinylive-r}\n#| label: fig-potato\n#| standalone: true\n\nlibrary(tidymodels)\n1️⃣ # other library() calls \n\n2️⃣ load(\"https://raw.githubusercontent.com/{user}/{repo}/{branch}/{file}\")\n\n3️⃣ source(\"https://raw.githubusercontent.com/{user}/{repo}/{branch}/{file}\")\n\n4️⃣ app\n```\n\nPackages should be listed in the code chunk.\nLoad the data in the code chunk.\nsource() with a local file won’t work.\nReturn the shiny app in the code chunk."
   },
   {
     "objectID": "index.html#why-would-posit-support-this",

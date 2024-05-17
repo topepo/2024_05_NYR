@@ -327,13 +327,14 @@ library(tidymodels)
 ```
 ````
 
-1. Package should be listed in the code chunk.
+1. Packages should be listed in the code chunk.
 
 2. Load the data in the code chunk.
 
 3. `source()` with a local file won't work.
 
 4. Return the shiny app in the code chunk. 
+
 
 ## Why would Posit support this? 
 
