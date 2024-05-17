@@ -190,7 +190,7 @@ mean(mtcars$mpg)
 
 ## shinylive
 
-A project for deploying Shiny applications that will run completely in the browser (R and python) via webR
+A project for deploying Shiny applications that will run completely in the browser via webR
 
  - Computations occur _locally_!
 
@@ -263,7 +263,7 @@ To declare packages, use `library()` calls
 
 Currently
 
- - Shinylive grabs the latest built version of a package from https://repo.r-wasm.org at render-time
+ - Shinylive grabs the latest built version of a package from the wasm repository at render-time
 
 . . .
 
@@ -287,15 +287,15 @@ You _don't_ get automatic access to your local objects in your workspace
 
 <br> 
 
-JS will allow specific types of requests. 
+Opening raw network sockets is not permitted from the WebAssembly sandbox ([no curl](https://github.com/posit-dev/r-shinylive/issues/31#issuecomment-1786739311)). 
 
 <br> 
 
-webR already patches `download.file()` to use an XHR request
+webR patches `download.file()` to use an XHR requests (JS API for HTTP requests).
 
 <br> 
 
-It's a work in progress.  (GH issue: [Add local folder support](https://github.com/posit-dev/r-shinylive/issues/13))
+It's a work in progress.  (GH issue: [Add local folder support](https://github.com/posit-dev/r-shinylive/issues/13)).
 
 
 ## As always, be careful... 

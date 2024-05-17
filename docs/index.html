@@ -595,7 +595,7 @@
   };
 
   // Store cell data
-  globalThis.qwebrCellDetails = [{"id":1,"code":"mean(mtcars$mpg)","options":{"context":"interactive","fig-cap":"","autorun":"false","warning":"true","label":"unnamed-chunk-1","dpi":72,"message":"true","output":"true","editor-quick-suggestions":"false","fig-width":7,"out-height":"","comment":"","results":"markup","editor-max-height":"","read-only":"false","editor-font-scale":1,"out-width":"700px","classes":"","fig-height":5}}];
+  globalThis.qwebrCellDetails = [{"code":"mean(mtcars$mpg)","id":1,"options":{"label":"unnamed-chunk-1","message":"true","fig-cap":"","comment":"","autorun":"false","warning":"true","read-only":"false","output":"true","dpi":72,"out-width":"700px","fig-width":7,"classes":"","context":"interactive","editor-max-height":"","results":"markup","fig-height":5,"out-height":"","editor-quick-suggestions":"false","editor-font-scale":1}}];
 
   </script>
   <script type="module">
@@ -1843,7 +1843,7 @@ Max Kuhn
 </section>
 <section id="shinylive" class="slide level2">
 <h2>shinylive</h2>
-<p>A project for deploying Shiny applications that will run completely in the browser (R and python) via webR</p>
+<p>A project for deploying Shiny applications that will run completely in the browser via webR</p>
 <ul>
 <li>Computations occur <em>locally</em>!</li>
 </ul>
@@ -1898,7 +1898,7 @@ Max Kuhn
 <div class="fragment">
 <p>Currently</p>
 <ul>
-<li>Shinylive grabs the latest built version of a package from https://repo.r-wasm.org at render-time</li>
+<li>Shinylive grabs the latest built version of a package from the wasm repository at render-time</li>
 </ul>
 </div>
 <div class="fragment">
@@ -1922,11 +1922,11 @@ Max Kuhn
 <h2>Data access</h2>
 <p>You <em>don’t</em> get automatic access to your local objects in your workspace</p>
 <p><br></p>
-<p>JS will allow specific types of requests.</p>
+<p>Opening raw network sockets is not permitted from the WebAssembly sandbox (<a href="https://github.com/posit-dev/r-shinylive/issues/31#issuecomment-1786739311">no curl</a>).</p>
 <p><br></p>
-<p>webR already patches <code>download.file()</code> to use an XHR request</p>
+<p>webR patches <code>download.file()</code> to use an XHR requests (JS API for HTTP requests).</p>
 <p><br></p>
-<p>It’s a work in progress. (GH issue: <a href="https://github.com/posit-dev/r-shinylive/issues/13">Add local folder support</a>)</p>
+<p>It’s a work in progress. (GH issue: <a href="https://github.com/posit-dev/r-shinylive/issues/13">Add local folder support</a>).</p>
 </section>
 <section id="as-always-be-careful" class="slide level2">
 <h2>As always, be careful…</h2>

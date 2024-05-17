@@ -39,7 +39,7 @@
     "href": "index.html#shinylive",
     "title": "Shinylive is SO EASY",
     "section": "shinylive",
-    "text": "shinylive\nA project for deploying Shiny applications that will run completely in the browser (R and python) via webR\n\nComputations occur locally!\n\nshinylive does almost all of the heavy lifting for you.\n\nI’ll focus on adding shiny apps to Quarto documents (a book, in my case)"
+    "text": "shinylive\nA project for deploying Shiny applications that will run completely in the browser via webR\n\nComputations occur locally!\n\nshinylive does almost all of the heavy lifting for you.\n\nI’ll focus on adding shiny apps to Quarto documents (a book, in my case)"
   },
   {
     "objectID": "index.html#setup",
@@ -60,7 +60,7 @@
     "href": "index.html#package-declarations",
     "title": "Shinylive is SO EASY",
     "section": "Package declarations",
-    "text": "Package declarations\nTo declare packages, use library() calls\n\nThe renv package is used to figure this out.\n\n\nCurrently\n\nShinylive grabs the latest built version of a package from https://repo.r-wasm.org at render-time\n\n\n\nUpcoming\n\nShinylive will bundle package files when the app is first built and tries to match package versions used at that time."
+    "text": "Package declarations\nTo declare packages, use library() calls\n\nThe renv package is used to figure this out.\n\n\nCurrently\n\nShinylive grabs the latest built version of a package from the wasm repository at render-time\n\n\n\nUpcoming\n\nShinylive will bundle package files when the app is first built and tries to match package versions used at that time."
   },
   {
     "objectID": "index.html#ingesting-data-and-code",
@@ -74,7 +74,7 @@
     "href": "index.html#data-access",
     "title": "Shinylive is SO EASY",
     "section": "Data access",
-    "text": "Data access\nYou don’t get automatic access to your local objects in your workspace\n\nJS will allow specific types of requests.\n\nwebR already patches download.file() to use an XHR request\n\nIt’s a work in progress. (GH issue: Add local folder support)"
+    "text": "Data access\nYou don’t get automatic access to your local objects in your workspace\n\nOpening raw network sockets is not permitted from the WebAssembly sandbox (no curl).\n\nwebR patches download.file() to use an XHR requests (JS API for HTTP requests).\n\nIt’s a work in progress. (GH issue: Add local folder support)."
   },
   {
     "objectID": "index.html#as-always-be-careful",
