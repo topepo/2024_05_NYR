@@ -25,7 +25,7 @@
     "href": "index.html#webr",
     "title": "Shinylive is SO EASY",
     "section": "webR",
-    "text": "webR\nR can be compiled to WebAssembly (aka wasm)\n\nR and packages are made into a binary format that can be embedded in the website.\nJavaScript is the interface that the browser uses.\n\nSee George Stagg’s video for more information.\nYou can see which R packages can be used at the repository site. In mid May there were 13,707 packages (about 94% of CRAN)."
+    "text": "webR\nR can be compiled to WebAssembly (aka wasm)\n\nR and packages are made into a binary format that can be embedded in the website.\nJavaScript is the interface that the browser uses.\n\nSee George Stagg’s video for more information.\nYou can see which R packages can be used at the repository site. In mid May:\n\nBuilt R packages: 19,531 (about 94% of CRAN).\nAvailable R packages: 13,707 (about 66% of CRAN)."
   },
   {
     "objectID": "index.html#webr-1",

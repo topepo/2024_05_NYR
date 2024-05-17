@@ -180,7 +180,10 @@ R can be compiled to WebAssembly (aka wasm)
  
 See [George Stagg's video](https://youtu.be/Mpq9a6yMl_w?si=p_wjtRUXQXVInrFM) for more information.
 
-You can see which R packages can be used [at the repository site](https://repo.r-wasm.org/). In mid May there were 13,707 packages (about `r round(19531/nrow(available.packages()) * 100, 0)`% of CRAN). 
+You can see which R packages can be used [at the repository site](https://repo.r-wasm.org/). In mid May:
+
+ - Built R packages: 19,531 (about `r round(19531/nrow(available.packages()) * 100, 0)`% of CRAN). 
+ - Available R packages: 13,707  (about `r round(13707/nrow(available.packages()) * 100, 0)`% of CRAN). 
 
 ## webR
 
