@@ -281,7 +281,7 @@ Upcoming
 The one rule is: 
 
 
-# If you live in JavaScript's house, <br> you have to live by JavaScript's rules {background-color="#CA225E"}
+# If you live in JavaScript's house, <br> you have to live by JavaScript's rules {background-color="#f37a48"}
 
 ## Data access
 
